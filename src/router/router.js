@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
+import Welcome from '../components/Welcome.vue'
 
 // const routes=[
 //   { path: '/', redirect: '/login' }, //当用户访问xxx/时，重新定向至xxx/login.....未实现
@@ -20,7 +21,12 @@ const router = new Router({
   routes: [
     { path: '/', redirect: '/login' }, //当用户访问xxx/时，重新定向至xxx/login.....未实现
     { path: '/login', component:  Login }, //当用户访问xxx/login地址是展示组件
-    { path:'/home',component:Home },
+    { 
+      path:'/home',
+      component:Home ,
+      redirect:'/welcome',  //重定向至'/welcome'  (一登陆就定向至/welcome，显示welcome组件)
+      children:[{path:'/welcome',component:Welcome}]  //嵌套子组件Welcome
+    },
   ]
 })
 
